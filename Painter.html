@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html>
-<header>Painter disciption</header>
-
+ 
 <body>
+    <title>Painter discription</title>
 
-    <h2>Painter entry Karthik Parvathaneni</h2>
+<h2>Painter entry Karthik Parvathaneni</h2>
 
+
+</script>
     <form>
-        <label for="form1_age">What is your age </label>
-        <input type="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=22> <br>
+      <label for="hidden-painter">The hidden painter name:</label>
+      <input type="password" id="hidden-painter" value="Monet" />
 
-        <label for="form1_nick">What is your nickname </label>
-        <input type="text" id="form1_nick" name="form1_nick" autofocus> <br>
+      <br />
 
-        <input type="button" onclick="resolveForm()" value="Get values from form">
+      <label for="guess-painter">Guess the painter:</label>
+      <input type="text" id="guess-painter" />
+
+      <br />
+
+      <input type="button" value="Check the guess" onclick="checkPainter()" />
+
+      <br />
+
+      <div id="result"></div>
     </form>
 
-
-    <p id="result">This text will be replaced </p>
-
     <script>
+      let good = 0;
+      let oops = 0;
 
-        function resolveForm() {
-            console.log("Getting form values")
-            age = document.getElementById("form1_age").value
-            nick = document.getElementById("form1_nick").value
-            confirmed = confirm("Are these the values? " + age + " and " + nick)
+      function checkPainter() {
+        const hiddenPainterInput = document.getElementById("hidden-painter");
+        const guessPainterInput = document.getElementById("guess-painter");
 
-            out = document.getElementById("result")
-            if (confirmed) {
-                out.innerHTML = "Values were confirmed"
-            } else {
-                out.innerHTML = "Values were not confirmed"
-            }
+        if (hiddenPainterInput.value === guessPainterInput.value) {
+          good++;
+          alert("You got it right!");
+        } else {
+          oops++;
+          alert("Sorry!");
         }
+
+        const resultElement = document.getElementById("result");
+        resultElement.innerHTML = `Right: ${good} | Wrong: ${oops}`;
+      }
     </script>
+  </body>
+</html>
+
 
 </body>
-
 </html>
